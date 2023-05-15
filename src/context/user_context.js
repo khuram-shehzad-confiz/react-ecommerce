@@ -60,7 +60,7 @@ export const UserProvider = ({ children }) => {
   const logout = async () => {
     localStorage.removeItem(USER_INFO);
     dispatch({ type: USER_LOGOUT });
-    dispatch({ type: 'SIDEBAR_CLOSE' })
+    // dispatch({ type: 'SIDEBAR_CLOSE' })
   };
  
 
