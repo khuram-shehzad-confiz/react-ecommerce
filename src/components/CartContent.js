@@ -17,7 +17,7 @@ const CartContent = () => {
         return <CartItem key={item.id} {...item} />;
       })}
 
-<hr/>
+      <hr />
       <div className="link-container">
         <Link to="/products" className="link-btn">
           Continue Shoping

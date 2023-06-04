@@ -4,16 +4,18 @@ import { useCartContext } from '../context/cart_context'
 import { useUserContext } from '../context/user_context'
 import { formatPrice } from '../utils/helpers'
 import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 
 const CartTotals = () => {
  
   const{shipping_fee, total_amount}=useCartContext()
-  console.log(shipping_fee)
-
+  // console.log(shipping_fee)
+const location=window.location.pathname;
   const{userInfo}=useUserContext()
   return <Wrapper>
     <div>
       <article>
+      
         <h5>Subtotal:<span>{formatPrice(total_amount)}</span> </h5>
 
         <p>Shipping Fee:<span>{formatPrice(shipping_fee)}</span> </p>
@@ -26,13 +28,20 @@ const CartTotals = () => {
     
     </div>
       </article>
-{/* {
-  console.log(userInfo)
-} */}
+
       {
-      
+      location==='/placeorder'?
+      <span/>
+
+      // <button className='btn' onClick={()=>{
+      //   console.log(`userInfo: ${userInfo}`)
+      //   console.log(`shipping_fee: ${shipping_fee}`)
+      //   console.log('oRDER has been placed')
+        
+      // }}>Place Order</button>
+      :
       userInfo ? 
-      <Link to='/checkout'className='btn' >Proceed to checkout</Link>
+      <Link to='/shipping'className='btn' >Proceed to checkout</Link>
       : 
       <Link to='/login' className='btn' >Login</Link>
     }

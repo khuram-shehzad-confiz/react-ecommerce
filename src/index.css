@@ -204,3 +204,26 @@ p {
 .page {
   min-height: calc(100vh - (20vh + 10rem));
 }
+
+.line {
+  border-top: 1px solid black; /* Set the line properties */
+}
+
+.form-continar {
+  width: 500px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+}
+
+.field {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: red;
+}

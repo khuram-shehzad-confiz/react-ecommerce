@@ -1,22 +1,40 @@
-import React from 'react'
+import React from "react";
 // import { GiCompass, GiDiamondHard, GiStabbedNote } from 'react-icons/gi'
 export const links = [
   {
     id: 1,
-    text: 'home',
-    url: '/',
+    text: "home",
+    url: "/",
   },
   {
     id: 2,
-    text: 'about',
-    url: '/about',
+    text: "about",
+    url: "/about",
   },
   {
     id: 3,
-    text: 'products',
-    url: '/products',
+    text: "products",
+    url: "/products",
   },
-]
+];
+
+export const checkoutSteps = [
+  {
+    id: 1,
+    text: "Shipping",
+    url: "/shipping",
+  },
+  {
+    id: 2,
+    text: "Payment",
+    url: "/payment",
+  },
+  {
+    id: 3,
+    text: "Place Order",
+    url: "/placeorder",
+  },
+];
 
 // export const services = [
 //   {
@@ -42,10 +60,12 @@ export const links = [
 //   },
 // ]
 
-export const products_url = 'https://course-api.com/react-store-products'
+export const products_url = "https://course-api.com/react-store-products";
 
-export const single_product_url = `https://course-api.com/react-store-single-product?id=`
+export const single_product_url = `https://course-api.com/react-store-single-product?id=`;
 
-export const login_url = 'https://dummyjson.com/auth/login'
+export const login_url = "https://dummyjson.com/auth/login";
 
-export const USER_INFO='userInfo'
+export const USER_INFO = "userInfo";
+export const SHIPPING_ADDRESS = "shipping_address";
+export const CREDIT_CARD="Credit Card";
