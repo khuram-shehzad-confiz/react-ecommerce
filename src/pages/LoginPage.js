@@ -18,7 +18,7 @@ const LoginPage = () => {
   useEffect(() => {
     if (userInfo) {
       console.log(navigate);
-      navigate.goBack();
+      navigate(-1);
     }
     console.log(`authenticated: ${authenticated}`);
   }, [authenticated, userInfo]);

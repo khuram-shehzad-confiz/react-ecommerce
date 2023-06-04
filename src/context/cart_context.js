@@ -6,7 +6,9 @@ import {
   TOGGLE_CART_ITEM_AMOUNT,
   CLEAR_CART,
   COUNT_CART_TOTALS,
+  SAVE_SHIPPING_ADDRESS,
 } from "../actions";
+import { SHIPPING_ADDRESS } from "../utils/constants";
 
 const getLocalStorageCart = () => {
   let cartItems = localStorage.getItem("cart");
@@ -16,11 +18,18 @@ const getLocalStorageCart = () => {
     return [];
   }
 };
+
+const getLocalStorageAddress=()=>{
+  return localStorage.getItem(SHIPPING_ADDRESS)?
+  JSON.parse(localStorage.getItem(SHIPPING_ADDRESS)):
+  {}
+}
 const initialState = {
   cart: getLocalStorageCart(),
   total_item: 0,
   total_amount: 0,
   shipping_fee: 22,
+  shipping_address:getLocalStorageAddress()
 };
 
 const CartContext = React.createContext();
@@ -49,6 +58,12 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: CLEAR_CART });
   };
 
+
+  //save shipping address
+  const saveShippingAddress=(address)=>{
+    localStorage.setItem(SHIPPING_ADDRESS, JSON.stringify(address))
+    dispatch({type:SAVE_SHIPPING_ADDRESS, payload:address})
+  }
   useEffect(() => {
     dispatch({ type: COUNT_CART_TOTALS });
     localStorage.setItem("cart", JSON.stringify(state.cart));
@@ -56,7 +71,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ ...state, addToCart, removeToCart, toggleCart, clearCart }}
+      value={{ ...state, addToCart, removeToCart, toggleCart, clearCart, saveShippingAddress }}
     >
       {children}
     </CartContext.Provider>
