@@ -24,9 +24,11 @@ const products_reducer = (state, action) => {
   }
   if (action.type === GET_PRODUCTS_SUCCESS) {
 
-    const featur_prodcuts = action.payload.filter((product) => {
-      return product.featured === true
-    })
+    // const featur_prodcuts = action.payload.filter((product) => {
+    //   return product.featured === true
+    // })
+
+    const featur_prodcuts = action.payload.products;
     return {
       ...state,
       product_loading: false,

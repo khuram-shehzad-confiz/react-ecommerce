@@ -60,9 +60,11 @@ export const checkoutSteps = [
 //   },
 // ]
 
-export const products_url = "https://course-api.com/react-store-products";
+// export const products_url = "https://course-api.com/react-store-products";
+export const products_url = "https://dummyjson.com/products";
 
-export const single_product_url = `https://course-api.com/react-store-single-product?id=`;
+export const single_product_url = `https://dummyjson.com/products/`;
+// export const single_product_url = `https://course-api.com/react-store-single-product?id=`;
 
 export const login_url = "https://dummyjson.com/auth/login";
 

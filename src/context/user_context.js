@@ -58,7 +58,9 @@ export const UserProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    localStorage.removeItem(USER_INFO);
+    // localStorage.removeItem(USER_INFO);
+    localStorage.clear();
+
     dispatch({ type: USER_LOGOUT });
     // dispatch({ type: 'SIDEBAR_CLOSE' })
   };

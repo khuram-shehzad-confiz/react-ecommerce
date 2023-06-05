@@ -46,7 +46,7 @@ const SingleProductPage = () => {
 
   console.log("product")
   console.log(product)
-  const { id: SKU, name, images, stock, company, price, description } = product
+  const { id: SKU, title: name, images, stock, brand: company, price, description } = product
   return (
 
     <Wrapper>
