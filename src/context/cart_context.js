@@ -61,7 +61,7 @@ export const CartProvider = ({ children }) => {
 
   //save shipping address
   const saveShippingAddress=(address)=>{
-    localStorage.setItem(SHIPPING_ADDRESS, JSON.stringify(address))
+    // localStorage.setItem(SHIPPING_ADDRESS, JSON.stringify(address))
     dispatch({type:SAVE_SHIPPING_ADDRESS, payload:address})
   }
   useEffect(() => {

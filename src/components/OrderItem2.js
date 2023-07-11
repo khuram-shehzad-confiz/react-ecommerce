@@ -3,14 +3,23 @@ import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
 import AmountButtons from "./AmountButtons";
 import { FaTrash } from "react-icons/fa";
-import { useCartContext } from "../context/cart_context";
+// import { useCartContext } from "../context/cart_context";
+
+import { useDispatch } from "react-redux";
+import { removeToReduxCart, toggleReduxCart } from "../redux/slices/CartSlice";
+
 const CartItem = ({ id, image, name, price, amount, max: stock }) => {
-  const { removeToCart, toggleCart } = useCartContext();
+  // const { removeToCart, toggleCart } = useCartContext();
+
+const dispatch =useDispatch()
+
   const increment = () => {
-    toggleCart(id,'inc')  
+    // toggleCart(id,'inc')  
+    dispatch(toggleReduxCart({id,actionType:'inc'}))
   };
   const decrement = () => {
-  toggleCart(id,'dec')
+  // toggleCart(id,'dec')
+  dispatch(toggleReduxCart({id,actionType:'dec'}))
   };
 
   return (
@@ -37,7 +46,8 @@ const CartItem = ({ id, image, name, price, amount, max: stock }) => {
           type="button"
           className="remove-btn"
           onClick={() => {
-            removeToCart(id);
+            // removeToCart(id);
+            dispatch(removeToReduxCart(id))
           }}
         >
           <FaTrash />

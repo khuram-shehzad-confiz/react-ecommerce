@@ -2,13 +2,17 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
-import { useCartContext } from "../context/cart_context";
+// import { useCartContext } from "../context/cart_context";
 import AmountButtons from "./AmountButtons";
+
+import { useDispatch } from "react-redux";
+import { addToReduxCart } from "../redux/slices/CartSlice";
 
 const AddToCart = ({ product }) => {
   const { id, stock } = product;
 
-  const{addToCart}=useCartContext()
+  // const{addToCart}=useCartContext()
+  const dispatch= useDispatch();
   const [amount, setAmount] = useState(1);
 
   const increment = () => {
@@ -37,8 +41,12 @@ const AddToCart = ({ product }) => {
         decrement={decrement}
       />
 
-      <Link to="/cart" className="btn" onClick={()=>addToCart(id,amount, product)}
-      >
+      {/* <Link to="/cart" className="btn" onClick={()=>addToCart(id,amount, product)}> */}
+      <Link to="/cart" className="btn" onClick={()=>{
+// addToCart(id,amount, product)
+dispatch(addToReduxCart({id,amount, product}))
+      }}>
+
         Add to Cart
       </Link>
     </Wrapper>

@@ -1,14 +1,22 @@
-import React from 'react'
-import { useProductsContext } from '../context/products_context'
+import React, {useEffect} from 'react'
+// import { useProductsContext } from '../context/products_context'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import Error from './Error'
 import Loading from './Loading'
 import Product from './Product'
 
-const FeaturedProducts = () => {
 
-  const { featur_prodcuts, product_error: error, product_loading: loading } = useProductsContext()
+import { getProducts } from '../redux/slices/ProductSlice'
+import { useDispatch, useSelector } from 'react-redux'
+
+const FeaturedProducts = () => {
+const dispatch=useDispatch()
+  useEffect(()=>{
+dispatch(getProducts())
+  }, [])
+  // const { featur_prodcuts, product_error: error, product_loading: loading } = useProductsContext()
+  const { featur_prodcuts, product_error: error, product_loading: loading } = useSelector((store)=>store.product)
   if (loading) {
     return <Loading />
   }

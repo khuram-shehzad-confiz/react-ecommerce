@@ -1,28 +1,35 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
-import { useCartContext } from '../context/cart_context'
+// import { useCartContext } from '../context/cart_context'
 import { useUserContext } from '../context/user_context'
 import { formatPrice } from '../utils/helpers'
 import { Link } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
 
+import {  useSelector } from 'react-redux';
+
 const CartTotals = () => {
  
-  const{shipping_fee, total_amount}=useCartContext()
+  // const{shipping_fee, total_amount}=useCartContext()
   // console.log(shipping_fee)
 const location=window.location.pathname;
   const{userInfo}=useUserContext()
+
+
+
+  const { shipping_fee,  total_price } =useSelector((store)=>store.cart)
+
   return <Wrapper>
     <div>
       <article>
       
-        <h5>Subtotal:<span>{formatPrice(total_amount)}</span> </h5>
+        <h5>Subtotal:<span>{formatPrice(total_price)}</span> </h5>
 
         <p>Shipping Fee:<span>{formatPrice(shipping_fee)}</span> </p>
 
         <hr/>
 
-        <h4>Order Total : <span>{formatPrice(shipping_fee+total_amount)}</span></h4>
+        <h4>Order Total : <span>{formatPrice(shipping_fee+total_price)}</span></h4>
         <div>
    
     

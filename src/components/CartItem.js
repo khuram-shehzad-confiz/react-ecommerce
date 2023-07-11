@@ -3,14 +3,22 @@ import styled from "styled-components";
 import { formatPrice } from "../utils/helpers";
 import AmountButtons from "./AmountButtons";
 import { FaTrash } from "react-icons/fa";
-import { useCartContext } from "../context/cart_context";
+// import { useCartContext } from "../context/cart_context";
+
+import { useDispatch } from "react-redux";
+import { removeToReduxCart, toggleReduxCart } from "../redux/slices/CartSlice";
+
 const CartItem = ({ id, image, name, price, amount, max: stock }) => {
-  const { removeToCart, toggleCart } = useCartContext();
+ 
+  const dispatch = useDispatch();
+  // const { removeToCart, toggleCart } = useCartContext();
   const increment = () => {
-    toggleCart(id,'inc')  
+    // toggleCart(id, "inc");
+    dispatch(toggleReduxCart({ id, actionType: "inc" }));
   };
   const decrement = () => {
-  toggleCart(id,'dec')
+    // toggleCart(id, decs);
+    dispatch(toggleReduxCart({ id, actionType: "dec" }));
   };
 
   return (
@@ -21,27 +29,27 @@ const CartItem = ({ id, image, name, price, amount, max: stock }) => {
           <h5 className="name">{name}</h5>
           <h5 className="price-small">{formatPrice(price)}</h5>
         </div>
-        </div>
-        <h5 className="price">{formatPrice(price)}</h5>
+      </div>
+      <h5 className="price">{formatPrice(price)}</h5>
 
-        <AmountButtons
-          amount={amount}
-          increment={increment}
-          decrement={decrement}
-        />
+      <AmountButtons
+        amount={amount}
+        increment={increment}
+        decrement={decrement}
+      />
 
-        <h5 className="subtotal">{formatPrice(price * amount)}</h5>
+      <h5 className="subtotal">{formatPrice(price * amount)}</h5>
 
-        <button
-          type="button"
-          className="remove-btn"
-          onClick={() => {
-            removeToCart(id);
-          }}
-        >
-          <FaTrash />
-        </button>
-    
+      <button
+        type="button"
+        className="remove-btn"
+        onClick={() => {
+          // removeToCart(id);
+          dispatch(removeToReduxCart(id));
+        }}
+      >
+        <FaTrash />
+      </button>
     </Wrapper>
   );
 };

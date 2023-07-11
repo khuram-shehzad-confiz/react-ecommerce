@@ -1,9 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-// import { PageHero } from '../components'
-// extra imports
-import { useCartContext } from '../context/cart_context'
-import { Link } from 'react-router-dom'
 import ShippingAddressScreen from './ShippingAddressScreen'
 import PaymentMethodPage from './PaymentMethodPage'
 

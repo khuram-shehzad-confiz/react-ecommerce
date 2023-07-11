@@ -1,14 +1,26 @@
-import React from "react";
+import React , {useEffect} from "react";
 import CartTotals from "./CartTotals";
 import style from "styled-components";
 import CartContent from "./CartContent";
-import { useCartContext } from "../context/cart_context";
+// import { useCartContext } from "../context/cart_context";
 import CartItem from "./CartItem";
 import OrderItem2 from "./OrderItem2";
 
 
+import { useSelector, useDispatch } from "react-redux";
+import { CART_ITEMS } from "../utils/constants";
+import { calculateReduxCartTotal } from "../redux/slices/CartSlice";
+
 const OrderDeatails = () => {
-    const { cart, clearCart } = useCartContext();
+    // const { cart, clearCart } = useCartContext();
+ 
+    const dispatch=useDispatch()
+
+    const { cart } = useSelector((store) => store.cart);
+    useEffect(() => {
+      // localStorage.setItem(CART_ITEMS, JSON.stringify(cart));
+      dispatch(calculateReduxCartTotal());
+    }, [cart]);
   return (
     <Wrapper>
         
@@ -17,9 +29,6 @@ const OrderDeatails = () => {
         return <OrderItem2 key={item.id} {...item} />;
       })}
 
-
-<hr/>
-    
     </Wrapper>
   );
 };

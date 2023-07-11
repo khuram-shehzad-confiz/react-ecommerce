@@ -2,16 +2,21 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useCartContext } from "../context/cart_context";
+// import { useCartContext } from "../context/cart_context";
 import { useNavigate } from "react-router-dom";
 import CheckoutSteps from "../components/CheckoutSteps";
 import { SHIPPING_ADDRESS } from "../utils/constants";
 import PageHero from "../components/PageHero";
 
+
+import { saveReduxShippingAddress } from "../redux/slices/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
+
 const ShippingAddressScreen = () => {
-  const { saveShippingAddress } = useCartContext();
+  // const { saveShippingAddress } = useCartContext();
   const navigate = useNavigate();
  
+  const dispatch=useDispatch();
 
   const loadShippingInfo = () => {
     return localStorage.getItem(SHIPPING_ADDRESS)
@@ -38,10 +43,12 @@ const ShippingAddressScreen = () => {
 
 
   const handleSubmit = (e, { setSubmitting }) => {
-    // e.preventDefault();
-    // TODO: Handle form submission
-    console.log(e);
-    saveShippingAddress(e);
+  
+    // console.log(e);
+    // saveShippingAddress(e);
+    localStorage.setItem(SHIPPING_ADDRESS, JSON.stringify(e))
+    dispatch(saveReduxShippingAddress(e))
+
     navigate("/placeorder");
   };
 

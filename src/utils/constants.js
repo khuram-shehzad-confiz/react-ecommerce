@@ -68,6 +68,11 @@ export const single_product_url = `https://dummyjson.com/products/`;
 
 export const login_url = "https://dummyjson.com/auth/login";
 
+
+export const BASE_URL="https://dummyjson.com/";
+
 export const USER_INFO = "userInfo";
 export const SHIPPING_ADDRESS = "shipping_address";
+export const CART_ITEMS="cart_items";
 export const CREDIT_CARD="Credit Card";
+

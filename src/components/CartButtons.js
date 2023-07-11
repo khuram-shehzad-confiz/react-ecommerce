@@ -3,14 +3,19 @@ import { FaShippingFast, FaShoppingCart, FaUserMinus, FaUserPlus } from 'react-i
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useProductsContext } from '../context/products_context'
-import { useCartContext } from '../context/cart_context'
+// import { useCartContext } from '../context/cart_context'
 import { useUserContext } from '../context/user_context'
+
+import { useSelector } from 'react-redux';
 
 const CartButtons = () => {
   const {closeSideBar}=useProductsContext()
-  const{total_item}=useCartContext()
+  // const{total_item}=useCartContext()
   const {authenticated, logout, userInfo}=useUserContext()
   console.log(`authenticated oput: ${authenticated}`)
+
+
+  const {total_items} = useSelector((store)=>store.cart)
   
   return (
     <Wrapper className='cart-btn-wrapper'>
@@ -19,7 +24,7 @@ const CartButtons = () => {
         <span className='cart-container'>
           <FaShoppingCart />
           <span className='cart-value'>
-            {total_item}
+            {total_items}
           </span>
         </span>
       </Link>

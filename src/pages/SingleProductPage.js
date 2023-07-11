@@ -1,16 +1,8 @@
 import React, { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useProductsContext } from '../context/products_context'
+// import { useProductsContext } from '../context/products_context'
 import { single_product_url as url } from '../utils/constants'
 import { formatPrice } from '../utils/helpers'
-// import {
-//   Loading,
-//   Error,
-//   ProductImages,
-//   AddToCart,
-//   Stars,
-//   PageHero,
-// } from '../components'
 
 import Loading from '../components/Loading'
 import Error from '../components/Error'
@@ -21,19 +13,29 @@ import PageHero from '../components/PageHero'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 
+import { useSelector, useDispatch } from 'react-redux'
+import { getSingleProduct } from '../redux/slices/ProductSlice'
 const SingleProductPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   console.log(useParams())
   // console.log(useHistory())
-  const { fetchSingleProduct,
-    single_product_error: error,
-    single_product_loading: loading,
-    single_product: product } = useProductsContext()
+  // const { fetchSingleProduct,
+  //   single_product_error: error,
+  //   single_product_loading: loading,
+  //   single_product: product } = useProductsContext()
 
+    const {
+      single_product_error : error,
+      single_product_loading: loading,
+      single_product:product}=useSelector((store)=>store.product)
+
+      const dispatch=useDispatch()
 
   useEffect(() => {
-    fetchSingleProduct(`${url}${id}`)
+    // fetchSingleProduct(`${url}${id}`)
+    // console.log("idid"+id)
+    dispatch(getSingleProduct(id))
   }, [id])
 
   if (loading || product == null) {

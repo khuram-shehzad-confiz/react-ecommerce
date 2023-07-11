@@ -5,7 +5,6 @@ import CheckoutSteps from "../components/CheckoutSteps";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { CREDIT_CARD } from "../utils/constants";
-import { Elements, CardNumberElement, CardExpiryElement, CardCvcElement } from "@stripe/react-stripe-js";
 import RadioButtons from "../components/RadioButtons";
 
 const PaymentMethodPage = () => {
